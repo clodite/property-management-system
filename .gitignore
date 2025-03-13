@@ -1,0 +1,15 @@
+# Conventional Commits 提交消息格式
+# <type>[optional scope]: <description>
+
+# feat     新增功能（对应语义化版本中的MINOR）
+# fix      修复bug（对应语义化版本中的PATCH）
+# docs     文档更新（如README、注释等）
+# style    代码格式调整（如空格、分号等，不改变代码逻辑）
+# refactor 代码重构（既不修复bug也不新增功能）
+# perf     性能优化
+# test     添加或修改测试用例
+# chore    构建过程或辅助工具的变动（如依赖更新、配置文件修改等）
+# ci       CI配置或脚本的修改
+# revert   回滚之前的提交
+
+project.pptx
