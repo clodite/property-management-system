@@ -1,17 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "nb.h"
+#include "function.h"
+#include "header.h"
+#include "struct.h"
 
-
-
-
-
-
-int main() 
+int main()
 {
-   
-
-   
 
     return 0;
 }
