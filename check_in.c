@@ -1,4 +1,6 @@
-#include "nb.h"
+#include "struct.h"
+#include "header.h"
+#include "function.h"
 
 void check_in()
 {
@@ -6,7 +8,7 @@ void check_in()
     date = fopen("date", "rt+");
     if (date == NULL)
     {
-        printf("Êı¾İ¿â´ò¿ªÊ§°Ü¡£");
+        printf("æ•°æ®åº“æ‰“å¼€å¤±è´¥ã€‚");
         return 0;
     }
 
@@ -23,12 +25,12 @@ getinstart:
     scanf("%s", &id);
     printf("password:");
     scanf("%s", &password);
-    while (!feof(date) && !check)//´ÓÎÄ¼şÀïÕÒ¸ÃÕËºÅ
+    while (!feof(date) && !check)//ä»æ–‡ä»¶é‡Œæ‰¾è¯¥è´¦å·
     {
-        fgets(id_check, 30, date);//¶ÁÈ¡id
+        fgets(id_check, 30, date);//è¯»å–id
         if (!strcmp(id_check, id))
         {
-            check = 1;//1Îª³É¹¦ÕÒµ½ÕËºÅ
+            check = 1;//1ä¸ºæˆåŠŸæ‰¾åˆ°è´¦å·
         }
         else
         {
@@ -37,7 +39,7 @@ getinstart:
     }
     if (!check)
     {
-        printf("Î´ÕÒµ½ÕËºÅ£¡Çë¼ì²éÕË»§ÃûÊÇ·ñÆ´Ğ´´íÎó\n");
+        printf("æœªæ‰¾åˆ°è´¦å·ï¼è¯·æ£€æŸ¥è´¦æˆ·åæ˜¯å¦æ‹¼å†™é”™è¯¯\n");
         goto getinstart;
     }
     else
@@ -47,14 +49,14 @@ getinstart:
         {
             if (strcmp(password_check, password))
             {
-                printf("ÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë£¡\n");
+                printf("å¯†ç é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
                 printf("password:");
                 scanf("%s", password);
                 try--;
             }
             else
             {
-                printf("µÇÂ¼³É¹¦£¡»¶Ó­»ØÀ´£¬%s", &id);
+                printf("ç™»å½•æˆåŠŸï¼æ¬¢è¿å›æ¥ï¼Œ%s", &id);
                 if (user_type == 0)
                     menu_manger();
                 else if (user_type == 1)
@@ -63,12 +65,12 @@ getinstart:
                     menu_custom();
                 else
                 {
-                    printf("ÕË»§ÀàĞÍ´íÎó£¡");
+                    printf("è´¦æˆ·ç±»å‹é”™è¯¯ï¼");
                     break;
                 }
             }
         }
-        printf("´íÎó´ÎÊı¹ı¶à£¡");
+        printf("é”™è¯¯æ¬¡æ•°è¿‡å¤šï¼");
     }
     fclose(date);
 }
