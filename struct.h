@@ -1,6 +1,5 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
 #define type_1 "大床房"
 #define type_2 "双床房"
 #define type_3 "电竞房" // ？
@@ -64,11 +63,11 @@ struct user *createuser(int type, char ID[30], char password[30], char email[30]
         exit(1);
     }
     newuser->next = NULL;
-    newuser->ID[30] = ID;
+    strcpy(newuser->ID, ID);
     newuser->type = type;
     newuser->password[30] = password[30];
     newuser->email[30] = email[30];
     newuser->name[30] = name[30];
-    newuser->card[15] = "none";
+    strcpy(newuser->card, "none");
     return newuser;
 }
