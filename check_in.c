@@ -5,7 +5,7 @@
 void check_in()
 {
     FILE* date;
-    date = fopen("date", "rt+");
+    date = fopen("user_date", "rt+");
     if (date == NULL)
     {
         printf("数据库打开失败。");
