@@ -1,5 +1,5 @@
 // 在这里放函数声明喵
 #pragma once
 #include "struct.h"
-struct time time_to_timestamp(int t);
-int timestamp_to_time(struct time);
+struct time timestamp_to_time(int t);
+int time_to_timestamp(struct time);

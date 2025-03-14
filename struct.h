@@ -9,6 +9,7 @@ struct time
     int year;
     int month;
     int day;
+    int hour;
 };
 
 struct user
