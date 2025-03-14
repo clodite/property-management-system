@@ -1,8 +1,8 @@
 #pragma once
 #include "header.h"
-#define type_1 "´ó´²·¿"
-#define type_2 "Ë«´²·¿"
-#define type_3 "µç¾º·¿" // £¿
+#define type_1 "å¤§åºŠæˆ¿"
+#define type_2 "åŒåºŠæˆ¿"
+#define type_3 "ç”µç«žæˆ¿" // ï¼Ÿ
 
 struct time
 {
@@ -15,44 +15,45 @@ struct time
 struct user
 {
     char ID[30];       // id
-    int type;          // ÓÃ»§ÀàÐÍ 0=>¹ÜÀíÔ± 1=>ÓÃ»§ 2=>¿ÍÈË
-    char card[15];     // ¿¨Æ¬ÀàÐÍ
-    char password[30]; // ÃÜÂë
-    char email[30];    // ÓÊÏä
-    char name[30];     // ÐÕÃû
-    struct user *next; // Ö¸ÏòÏÂÒ»¸ö½ÚµãµÄÖ¸Õë
+    int type;          // ç”¨æˆ·ç±»åž‹ 0=>ç®¡ç†å‘˜ 1=>ç”¨æˆ· 2=>å®¢äºº
+    char card[15];     // å¡ç‰‡ç±»åž‹
+    char password[30]; // å¯†ç 
+    char email[30];    // é‚®ç®±
+    char name[30];     // å§“å
+    struct user *next; // æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
 };
 
 struct custom
 {
-    char name[30];   // Ãû×Ö
-    int age;         // ÄêÁä
-    char call[20];   // µç»°
-    int room;        // Èë×¡·¿¼äºÅ
-    int arrive_time; // Èë×¡Ê±¼ä °´Ê±¼ä´Á¼ÆËã
-    int time_live;   // Èë×¡Ê±³¤ ÔÚ°ìÀíÈë×¡Ê±¼ÆËã
-    int leave_time;  // ÍË·¿Ê±¼ä Î´ÍË·¿¼Ç×÷-1
-    int card;        // ¿Í»§µÈ¼¶
-    // char booktime[30];  // Ô¤¶¨Ê±¼ä
-    struct custom *next; // Ö¸ÏòÏÂÒ»¸ö½ÚµãµÄÖ¸Õë
+    char name[30];   // åå­—
+    int age;         // å¹´é¾„
+    char call[20];   // ç”µè¯
+    int room;        // å…¥ä½æˆ¿é—´å·
+    int arrive_time; // å…¥ä½æ—¶é—´ æŒ‰æ—¶é—´æˆ³è®¡ç®—
+    int time_live;   // å…¥ä½æ—¶é•¿ åœ¨åŠžç†å…¥ä½æ—¶è®¡ç®—
+    int leave_time;  // é€€æˆ¿æ—¶é—´ æœªé€€æˆ¿è®°ä½œ-1
+    int card;        // å®¢æˆ·ç­‰çº§
+    // char booktime[30];  // é¢„å®šæ—¶é—´
+    struct custom *next; // æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
 };
 
 struct room
 {
-    int num;   // ·¿ºÅ
-    int type;  // ¿Í·¿ÀàÐÍ ÓÃÊý×ÖÌæ´ú ÓÃº¯ÊýÅÐ¶¨
-    int price; // ¿Í·¿¼Û¸ñ
-    // int state;          // ¿Í·¿×´Ì¬ 0=>¿ÕÏÐ 1=>ÒÑÔ¤¶¨ 2=>ÒÑÈë×¡
-    // struct user *custom;// Èë×¡¿ÍÈËµÄÊý¾Ý
-    struct room *next; // Ö¸ÏòÏÂÒ»¸ö½ÚµãµÄÖ¸Õë
+    int num;   // æˆ¿å·
+    int type;  // å®¢æˆ¿ç±»åž‹ ç”¨æ•°å­—æ›¿ä»£ ç”¨å‡½æ•°åˆ¤å®š
+    int price; // å®¢æˆ¿ä»·æ ¼
+    int size;  // å®¢æˆ¿é¢ç§¯
+    // int state;          // å®¢æˆ¿çŠ¶æ€ 0=>ç©ºé—² 1=>å·²é¢„å®š 2=>å·²å…¥ä½
+    // struct user *custom;// å…¥ä½å®¢äººçš„æ•°æ®
+    struct room *next; // æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
 };
 
-struct room *create_room(int num, int type, int price) // ´´½¨ÐÂ·¿¼ä
+struct room *create_room(int num, int type, int price) // åˆ›å»ºæ–°æˆ¿é—´
 {
     struct room *newroom = (struct room *)malloc(sizeof(struct room));
     if (!newroom)
     {
-        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         exit(1);
     }
     newroom->num = num;
@@ -64,12 +65,12 @@ struct room *create_room(int num, int type, int price) // ´´½¨ÐÂ·¿¼ä
     return newroom;
 }
 
-struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30]) // ´´½¨ÕË»§
+struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30]) // åˆ›å»ºè´¦æˆ·
 {
     struct user *newuser = (struct user *)malloc(sizeof(struct user));
     if (!newuser)
     {
-        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         exit(1);
     }
     newuser->next = NULL;
@@ -82,12 +83,12 @@ struct user *create_user(int type, char ID[30], char password[30], char email[30
     return newuser;
 }
 
-struct custom *create_custom(char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card) // ´´½¨¿ÍÈË
+struct custom *create_custom(char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card) // åˆ›å»ºå®¢äºº
 {
     struct custom *newcustom = (struct custom *)malloc(sizeof(struct custom));
     if (!newcustom)
     {
-        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         exit(1);
     }
     strcpy(newcustom->name, name);
