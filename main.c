@@ -4,6 +4,6 @@
 
 int main()
 {
-
+    check_in();
     return 0;
 }
