@@ -10,9 +10,9 @@ struct time timestamp_to_time(int t)
     start_time.tm_year = 2025 - 1900;
     start_time.tm_mon = 3 - 1;
     start_time.tm_mday = 14;
-    start_time.tm_hour = 0 - 8;
+    start_time.tm_hour = 0;
 
-    time_t start_timestamp = mktime(&start_time)
+    time_t start_timestamp = mktime(&start_time);
     time_t timestamp_diff = int t * 3600;
     time_t real_timestamp = start_timestamp + timestamp_diff;
 
