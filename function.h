@@ -1,7 +1,10 @@
-// ÔÚÕâÀï·Åº¯ÊıÉùÃ÷ß÷
+// åœ¨è¿™é‡Œæ”¾å‡½æ•°å£°æ˜å–µ
 #pragma once
 #include "struct.h"
 struct time timestamp_to_time(int t);
 int time_to_timestamp(struct time);
-struct room *create_room(int num, int type, int price);                                                                                                                                        // ´´½¨ĞÂ·¿¼ä
-struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card); // ´´½¨ÕË»§
+struct room *create_room(int num, int type, int price);                                                                                                                                        // åˆ›å»ºæ–°æˆ¿é—´
+struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card); // åˆ›å»ºè´¦æˆ·
+int Count_BasicYear(struct time time1);
+int Count_EndYear(struct time time1);
+int JudgeYear(int x);
