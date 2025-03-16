@@ -1,10 +1,10 @@
 
-#define BasicYear 2000 //ÒÔÏÂÈ«²¿ÊÇÊ±¼ä´Á¼ÆËãÓÃµÄ»ù×¼Ê±¼äµÄºê 
+#define BasicYear 2025 //ä»¥ä¸‹å…¨éƒ¨æ˜¯æ—¶é—´æˆ³è®¡ç®—ç”¨çš„åŸºå‡†æ—¶é—´çš„å® 
 #define BasicMonth 3
 #define BasicDay 14
 #define BasicHour 0
 
-int Lpday[13] = {0,31,29,31,30,31,30,31,31,30,31,30,31}; //Ê±¼ä´ÁÓÃµ½ ´¢´æÈòÄêºÍÆ½ÄêÌìÊı 
+int Lpday[13] = {0,31,29,31,30,31,30,31,31,30,31,30,31}; //æ—¶é—´æˆ³ç”¨åˆ° å‚¨å­˜é—°å¹´å’Œå¹³å¹´å¤©æ•° 
 int Coday[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
 
 struct time
@@ -21,7 +21,7 @@ int time_to_timestamp(struct time Intime)
 	int trans = 0;
 	int trans1 = 0;
 	struct time Bstime;
-	Bstime.year = BasicYear; //µÚÒ»ÄêµÄ½á¹¹Ìå 
+	Bstime.year = BasicYear; //ç¬¬ä¸€å¹´çš„ç»“æ„ä½“ 
 	Bstime.month = BasicMonth;
     Bstime.day = BasicDay;
     Bstime.hour = BasicHour;
@@ -30,7 +30,7 @@ int time_to_timestamp(struct time Intime)
     trans = trans1 + trans;
     trans1 = 0;
     int i = Bstime.year + 1;
-    for(i=Bstime.year + 1; i<=Intime.year-1 ; i++) //ÅĞ¶ÏÖĞ¼äÄê·İÌìÊı; 
+    for(i=Bstime.year + 1; i<=Intime.year-1 ; i++) //åˆ¤æ–­ä¸­é—´å¹´ä»½å¤©æ•°; 
     {
     	trans1 = trans1  + 365 + JudgeYear(i);
 	}
@@ -41,7 +41,7 @@ int time_to_timestamp(struct time Intime)
 	return trans;
 }
 
-int Count_BasicYear(struct time time1) //¼ÆËãÊ±¼ä´Áº¯ÊıÖĞÓÃµÄµÚÒ»ÄêµÄÌìÊıÅĞ¶Ï 
+int Count_BasicYear(struct time time1) //è®¡ç®—æ—¶é—´æˆ³å‡½æ•°ä¸­ç”¨çš„ç¬¬ä¸€å¹´çš„å¤©æ•°åˆ¤æ–­ 
 {
 	int result = 0;
 	int n = JudgeYear(time1.year);
@@ -66,7 +66,7 @@ int Count_BasicYear(struct time time1) //¼ÆËãÊ±¼ä´Áº¯ÊıÖĞÓÃµÄµÚÒ»ÄêµÄÌìÊıÅĞ¶Ï
 	return result;
 }
 
-int Count_EndYear(struct time time1) //¼ÆËãÊ±¼ä´Áº¯ÊıÖĞÓÃµÄ×îºóÒ»ÄêµÄÌìÊıÅĞ¶Ï 
+int Count_EndYear(struct time time1) //è®¡ç®—æ—¶é—´æˆ³å‡½æ•°ä¸­ç”¨çš„æœ€åä¸€å¹´çš„å¤©æ•°åˆ¤æ–­ 
 {
 	int result = 0;
 	int n = JudgeYear(time1.year);
@@ -92,7 +92,7 @@ int Count_EndYear(struct time time1) //¼ÆËãÊ±¼ä´Áº¯ÊıÖĞÓÃµÄ×îºóÒ»ÄêµÄÌìÊıÅĞ¶Ï
 }
 
 
-int JudgeYear(int x) //ÅĞ¶ÏÊÇ·ñÈòÄê£¬ÈòÄê·µ»Ø1£¬·ñÔò0 
+int JudgeYear(int x) //åˆ¤æ–­æ˜¯å¦é—°å¹´ï¼Œé—°å¹´è¿”å›1ï¼Œå¦åˆ™0 
 {
 	if(x%4==0 && x%100!=0 || x%400==0)
 	   return 1;
