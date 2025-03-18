@@ -18,11 +18,19 @@ struct time timestamp_to_time(int t)
 
     struct tm *timenow = localtime(&real_timestamp);
 
+<<<<<<< HEAD
     struct time result;
     result.year = timenow->tm_year + 1900;
     result.month = timenow->tm_mon + 1;
     result.day = timenow->tm_mday;
     result.hour = timenow->tm_hour;
+=======
+    struct time time_result;
+    time_result.year  = timenow->tm_year + 1900;
+    time_result.month = timenow->tm_mon + 1;
+    time_result.day   = timenow->tm_mday;
+    time_result.hour  = timenow->tm_hour;
+>>>>>>> 7a204c39577d09a34e2a820fdb69b684a03127bf
 
-    return result;
+    return time_result;
 }
