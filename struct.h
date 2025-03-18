@@ -40,12 +40,13 @@ struct room *create_room(int num, int type, int price) // 创建新房间
 struct user
 {
     char ID[30];       // id
-    int type;          // 用户类型 0=>管理员 1=>用户 2=>客人
+    char call[20];     // 电话
     char password[30]; // 密码
     char email[30];    // 邮箱
     char name[30];     // 姓名
+    char IDnum[30];    // 身份证号
     int age;           // 年龄
-    char call[20];     // 电话
+    int type;          // 用户类型 0=>管理员 1=>用户 2=>客人
     int room;          // 入住房间号
     int arrive_time;   // 入住时间 按时间戳计算
     int time_live;     // 入住时长 在办理入住时计算
@@ -54,7 +55,7 @@ struct user
     // char booktime[30];  // 预定时间
     struct user *next; // 指向下一个节点的指针
 };
-struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card) // 创建账户
+struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], char IDnum[30], int room, int arrive_time, int time_live, int leave_time, int card) // 创建账户
 {
     struct user *newuser = (struct user *)malloc(sizeof(struct user));
     if (!newuser)
@@ -64,18 +65,18 @@ struct user *create_user(int type, char ID[30], char password[30], char email[30
     }
     newuser->next = NULL;
     strcpy(newuser->ID, ID);
-    newuser->type = type;
-    newuser->password[30] = password[30];
-    newuser->email[30] = email[30];
-    newuser->name[30] = name[30];
-    strcpy(newuser->name, name);
-    newuser->age = age;
     strcpy(newuser->call, call);
+    strcpy(newuser->password, password);
+    strcpy(newuser->email, email);
+    strcpy(newuser->name, name);
+    strcpy(newuser->IDnum, IDnum);
+    newuser->age = age;
+    newuser->type = type;
     newuser->room = room;
     newuser->arrive_time = arrive_time;
     newuser->time_live = time_live;
     newuser->leave_time = leave_time;
     newuser->card = card;
-    newuser->next = NULL;
+
     return newuser;
 }

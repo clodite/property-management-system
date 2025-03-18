@@ -1,6 +1,6 @@
-# include "header.h"
-# include "function.h"
-# include "struct.h"
+#include "header.h"
+#include "function.h"
+#include "struct.h"
 
 struct time timestamp_to_time(int t)
 {
@@ -13,17 +13,16 @@ struct time timestamp_to_time(int t)
     start_time.tm_hour = 0;
 
     time_t start_timestamp = mktime(&start_time);
-    time_t timestamp_diff = int t * 3600;
+    time_t timestamp_diff = t * 3600;
     time_t real_timestamp = start_timestamp + timestamp_diff;
 
     struct tm *timenow = localtime(&real_timestamp);
 
-    struct time time_result;
-    result.year  = timenow->tm_year + 1900;
+    struct time result;
+    result.year = timenow->tm_year + 1900;
     result.month = timenow->tm_mon + 1;
-    result.day   = timenow->tm_mday;
-    result.hour  = timenow->tm_hour;
+    result.day = timenow->tm_mday;
+    result.hour = timenow->tm_hour;
 
     return result;
 }
-
