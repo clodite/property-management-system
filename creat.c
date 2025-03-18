@@ -1,13 +1,13 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include "struct.h"
 #include "header.h"
 #include "function.h"
-struct user* create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card) // ´´½¨ÕË»§
+struct user* create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], int room, int arrive_time, int time_live, int leave_time, int card) // åˆ›å»ºè´¦æˆ·
 {
     struct user* newuser = (struct user*)malloc(sizeof(struct user));
     if (!newuser)
     {
-        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         exit(1);
     }
     newuser->next = NULL;
@@ -22,12 +22,12 @@ struct user* create_user(int type, char ID[30], char password[30], char email[30
     newuser->next = NULL;
     return newuser;
 }
-struct room* create_room(int num, int type, int price) // ´´½¨ĞÂ·¿¼ä
+struct room* create_room(int num, int type, int price) // åˆ›å»ºæ–°æˆ¿é—´
 {
     struct room* newroom = (struct room*)malloc(sizeof(struct room));
     if (!newroom)
     {
-        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
         exit(1);
     }
     newroom->num = num;

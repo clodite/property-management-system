@@ -1,9 +1,9 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include "struct.h"
 #include "header.h"
 #include "function.h"
 
-//ÕâÀï·ÅÈıÖÖÕËºÅµÇÂ¼ºó¸ø³öµÄ²Ù×÷½çÃæ
+//è¿™é‡Œæ”¾ä¸‰ç§è´¦å·ç™»å½•åç»™å‡ºçš„æ“ä½œç•Œé¢
 void menu_manager(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card)
 {
 	;
