@@ -22,9 +22,9 @@ struct room
 
 struct user
 {
-    char ID[30];       // id
-    char password[30]; // 密码
-    int type;          // 用户类型 0=>管理员 1=>用户 2=>客人
+    char ID[30]; // 身份证号
+    // char password[30]; // 密码
+    // int type;          // 用户类型 0=>管理员 1=>用户 2=>客人
     char name[30];     // 真实姓名
     int age;           // 真实年龄
     char call[20];     // 用户电话
