@@ -8,3 +8,8 @@ struct user *create_user(int type, char ID[30], char password[30], char email[30
 int Count_BasicYear(struct time time1);
 int Count_EndYear(struct time time1);
 int JudgeYear(int x);
+void check_in();
+void menu_manager(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
+void menu_front(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
+void menu_custom(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
+
