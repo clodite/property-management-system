@@ -5,6 +5,19 @@
 
 int main()
 {
-    check_in();
-    return 0;
+     print_welcome_ui();
+  int input = 0;
+  scanf("%d", &input);
+  switch (input)
+  {
+  case 1:
+      check_in();
+      break;
+  case 2:
+      ;
+      break;
+  case 3:
+      break;
+  }
+
 }

@@ -2,12 +2,12 @@
 #include "struct.h"
 #include "header.h"
 #include "function.h"
-// ´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢²¢¹¹½¨Á´±í
+// ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯å¹¶æ„å»ºé“¾è¡¨
 struct user* load_users(const char* userdate)
 {
     FILE* file = fopen(userdate, "rt");
     if (file == NULL) {
-        printf("Êı¾İ¿â´ò¿ªÊ§°Ü¡£\n");
+        printf("æ•°æ®åº“æ‰“å¼€å¤±è´¥ã€‚\n");
         return NULL;
     }
 
@@ -35,7 +35,7 @@ struct user* load_users(const char* userdate)
         }
         else
         {
-            free(load_user); // Èç¹û¶ÁÈ¡Ê§°Ü£¬ÊÍ·ÅÄÚ´æ
+            free(load_user); // å¦‚æœè¯»å–å¤±è´¥ï¼Œé‡Šæ”¾å†…å­˜
             break;
         }
     }
@@ -44,7 +44,7 @@ struct user* load_users(const char* userdate)
     return head;
 }
 
-// ÊÍ·ÅÁ´±íÄÚ´æ
+// é‡Šæ”¾é“¾è¡¨å†…å­˜
 void free_users(struct user* head)
 {
     while (head != NULL)
@@ -55,12 +55,53 @@ void free_users(struct user* head)
     }
 }
 
-// µÇÂ¼¹¦ÄÜ
-void check_in()
-{
+// ç™»å½•åŠŸèƒ½
+// æ‰“å°æ¬¢è¿ç•Œé¢
+void print_welcome_ui() {
+    printf("========================================\n");
+    printf("|       æ¬¢è¿ä½¿ç”¨åƒæ‹ä¸‡èŠ±é…’åº—ç³»ç»Ÿ        |\n");
+    printf("========================================\n\n");
+    printf("[1]ç”¨æˆ·ç™»å½•\n");
+    printf("[2]æ³¨å†Œè´¦å·\n");
+    printf("[3]é€€å‡ºç³»ç»Ÿ\n");
+}
+
+// æ‰“å°ç™»å½•ç•Œé¢
+void print_login_ui() {
+    printf("\n");
+    printf("========================================\n");
+    printf("|              ç”¨æˆ·ç™»å½•                |\n");
+    printf("========================================\n");
+}
+
+// æ‰“å°ç™»å½•æˆåŠŸç•Œé¢
+void print_login_success_ui(char* name) {
+    printf("\n");
+    printf("========================================\n");
+    printf("|          ç™»å½•æˆåŠŸï¼æ¬¢è¿å›æ¥ï¼Œ%s          |\n", name);
+    printf("========================================\n");
+}
+
+// æ‰“å°ç™»å½•å¤±è´¥ç•Œé¢
+void print_login_fail_ui(int try) {
+    printf("\n");
+    printf("========================================\n");
+    printf("|  ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚å‰©ä½™å°è¯•æ¬¡æ•°ï¼š%d  |\n", try);
+    printf("========================================\n");
+}
+
+// æ‰“å°é”™è¯¯æ¬¡æ•°è¿‡å¤šç•Œé¢
+void print_too_many_attempts_ui() {
+    printf("\n");
+    printf("========================================\n");
+    printf("|        é”™è¯¯æ¬¡æ•°è¿‡å¤šï¼Œç™»å½•å¤±è´¥ï¼       |\n");
+    printf("========================================\n");
+}
+
+// ç™»å½•åŠŸèƒ½
+void check_in() {
     struct user* user_list = load_users("userdate");
-    if (user_list == NULL)
-    {
+    if (user_list == NULL) {
         return;
     }
 
@@ -68,19 +109,18 @@ void check_in()
     char password[30];
     int try = 3;
 
-    while (try > 0)
-    {
+
+    while (try > 0) {
+        print_login_ui();
         printf("user name: ");
         scanf("%s", id);
         printf("password: ");
         scanf("%s", password);
 
         struct user* current = user_list;
-        while (current != NULL)
-        {
-            if (strcmp(current->ID, id) == 0 && strcmp(current->password, password) == 0)
-            {
-                printf("µÇÂ¼³É¹¦£¡»¶Ó­»ØÀ´£¬%s\n", current->name);
+        while (current != NULL) {
+            if (strcmp(current->ID, id) == 0 && strcmp(current->password, password) == 0) {
+                print_login_success_ui(current->name);
                 if (current->type == 0)
                     menu_manager(current->ID, current->password, &current->type,
                         current->name, &current->age, current->call, &current->card);
@@ -91,21 +131,20 @@ void check_in()
                     menu_custom(current->ID, current->password, &current->type,
                         current->name, &current->age, current->call, &current->card);
                 else
-                    printf("ÕË»§ÀàĞÍ´íÎó£¡\n");
+                    printf("è´¦æˆ·ç±»å‹é”™è¯¯ï¼\n");
 
-                free_users(user_list); // ÊÍ·ÅÁ´±íÄÚ´æ
+                free_users(user_list); // é‡Šæ”¾é“¾è¡¨å†…å­˜
                 return;
             }
             current = current->next;
         }
 
         try--;
-        if (try > 0)
-        {
-            printf("ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÊÔ¡£Ê£Óà³¢ÊÔ´ÎÊı£º%d\n", try);
+        if (try > 0) {
+            print_login_fail_ui(try);
         }
     }
 
-    printf("´íÎó´ÎÊı¹ı¶à£¬µÇÂ¼Ê§°Ü£¡\n");
-    free_users(user_list); // ÊÍ·ÅÁ´±íÄÚ´æ
+    print_too_many_attempts_ui();
+    free_users(user_list); // é‡Šæ”¾é“¾è¡¨å†…å­˜
 }
