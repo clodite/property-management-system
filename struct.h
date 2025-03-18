@@ -39,4 +39,11 @@ struct live_record
     int time_live;     // 入住时长 在办理入住时计算
     int leave_time;    // 退房时间 未退房记作-1
 };
+struct book_record
+{
+    char ID[30];       // 预约人的id
+    int room;          // 预约房间号
+    int arrive_time;   // 预约时间 按时间戳计算
+    int time_live;     // 预约时长 在办理入住时计算
+};
 
