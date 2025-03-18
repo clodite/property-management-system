@@ -1,4 +1,4 @@
-// ÔÚÕâÀï·ÅÓÃµ½µÄÍ·ÎÄ¼şß÷
+// åœ¨è¿™é‡Œæ”¾ç”¨åˆ°çš„å¤´æ–‡ä»¶å–µ
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
