@@ -20,23 +20,6 @@ struct room
     struct room *next; // 指向下一个节点的指针
 };
 
-struct room *create_room(int num, int type, int price) // 创建新房间
-{
-    struct room *newroom = (struct room *)malloc(sizeof(struct room));
-    if (!newroom)
-    {
-        printf("内存分配失败\n");
-        exit(1);
-    }
-    newroom->num = num;
-    // newroom->custom = NULL;
-    newroom->type = type;
-    newroom->price = price;
-    // newroom->state = 0;
-    newroom->next = NULL;
-    return newroom;
-}
-
 struct user
 {
     char ID[30];       // id
@@ -55,28 +38,4 @@ struct user
     // char booktime[30];  // 预定时间
     struct user *next; // 指向下一个节点的指针
 };
-struct user *create_user(int type, char ID[30], char password[30], char email[30], char name[30], int age, char call[20], char IDnum[30], int room, int arrive_time, int time_live, int leave_time, int card) // 创建账户
-{
-    struct user *newuser = (struct user *)malloc(sizeof(struct user));
-    if (!newuser)
-    {
-        printf("内存分配失败\n");
-        exit(1);
-    }
-    newuser->next = NULL;
-    strcpy(newuser->ID, ID);
-    strcpy(newuser->call, call);
-    strcpy(newuser->password, password);
-    strcpy(newuser->email, email);
-    strcpy(newuser->name, name);
-    strcpy(newuser->IDnum, IDnum);
-    newuser->age = age;
-    newuser->type = type;
-    newuser->room = room;
-    newuser->arrive_time = arrive_time;
-    newuser->time_live = time_live;
-    newuser->leave_time = leave_time;
-    newuser->card = card;
 
-    return newuser;
-}
