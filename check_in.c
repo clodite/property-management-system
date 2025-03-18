@@ -2,25 +2,24 @@
 #include "struct.h"
 #include "header.h"
 #include "function.h"
-// ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð¶ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-struct user *load_users(const char *userdate)
+// ´ÓÎÄ¼þÖÐ¶ÁÈ¡ÓÃ»§ÐÅÏ¢²¢¹¹½¨Á´±í
+struct user* load_users(const char* userdate)
 {
-    FILE *file = fopen(userdate, "rt");
-    if (file == NULL)
-    {
-        printf("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ê§ï¿½Ü¡ï¿½\n");
+    FILE* file = fopen(userdate, "rt");
+    if (file == NULL) {
+        printf("Êý¾Ý¿â´ò¿ªÊ§°Ü¡£\n");
         return NULL;
     }
 
-    struct user *head = NULL;
-    struct user *tail = NULL;
+    struct user* head = NULL;
+    struct user* tail = NULL;
 
     while (!feof(file))
     {
-        struct user *load_user = (struct user *)malloc(sizeof(struct user));
+        struct user* load_user = (struct user*)malloc(sizeof(struct user));
         if (fscanf(file, "%s %s %d %s %d %s %d",
-                   load_user->ID, load_user->password, &load_user->type,
-                   load_user->name, &load_user->age, load_user->call, &load_user->card) == 7)
+            load_user->ID, load_user->password, &load_user->type,
+            load_user->name, &load_user->age, load_user->call, &load_user->card) == 7)
         {
             load_user->next = NULL;
             if (head == NULL)
@@ -36,7 +35,7 @@ struct user *load_users(const char *userdate)
         }
         else
         {
-            free(load_user); // ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ê§ï¿½Ü£ï¿½ï¿½Í·ï¿½ï¿½Ú´ï¿½
+            free(load_user); // Èç¹û¶ÁÈ¡Ê§°Ü£¬ÊÍ·ÅÄÚ´æ
             break;
         }
     }
@@ -45,21 +44,21 @@ struct user *load_users(const char *userdate)
     return head;
 }
 
-// ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
-void free_users(struct user *head)
+// ÊÍ·ÅÁ´±íÄÚ´æ
+void free_users(struct user* head)
 {
     while (head != NULL)
     {
-        struct user *temp = head;
+        struct user* temp = head;
         head = head->next;
         free(temp);
     }
 }
 
-// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+// µÇÂ¼¹¦ÄÜ
 void check_in()
 {
-    struct user *user_list = load_users("userdate");
+    struct user* user_list = load_users("userdate");
     if (user_list == NULL)
     {
         return;
@@ -76,25 +75,25 @@ void check_in()
         printf("password: ");
         scanf("%s", password);
 
-        struct user *current = user_list;
+        struct user* current = user_list;
         while (current != NULL)
         {
             if (strcmp(current->ID, id) == 0 && strcmp(current->password, password) == 0)
             {
-                printf("ï¿½ï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ó­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%s\n", current->name);
+                printf("µÇÂ¼³É¹¦£¡»¶Ó­»ØÀ´£¬%s\n", current->name);
                 if (current->type == 0)
                     menu_manager(current->ID, current->password, &current->type,
-                                 current->name, &current->age, current->call, &current->card);
+                        current->name, &current->age, current->call, &current->card);
                 else if (current->type == 1)
                     menu_front(current->ID, current->password, &current->type,
-                               current->name, &current->age, current->call, &current->card);
+                        current->name, &current->age, current->call, &current->card);
                 else if (current->type == 2)
                     menu_custom(current->ID, current->password, &current->type,
-                                current->name, &current->age, current->call, &current->card);
+                        current->name, &current->age, current->call, &current->card);
                 else
-                    printf("ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½\n");
+                    printf("ÕË»§ÀàÐÍ´íÎó£¡\n");
 
-                free_users(user_list); // ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+                free_users(user_list); // ÊÍ·ÅÁ´±íÄÚ´æ
                 return;
             }
             current = current->next;
@@ -103,10 +102,10 @@ void check_in()
         try--;
         if (try > 0)
         {
-            printf("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½Ê£ï¿½à³¢ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½%d\n", try);
+            printf("ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÊÔ¡£Ê£Óà³¢ÊÔ´ÎÊý£º%d\n", try);
         }
     }
 
-    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½Â¼Ê§ï¿½Ü£ï¿½\n");
-    free_users(user_list); // ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+    printf("´íÎó´ÎÊý¹ý¶à£¬µÇÂ¼Ê§°Ü£¡\n");
+    free_users(user_list); // ÊÍ·ÅÁ´±íÄÚ´æ
 }
