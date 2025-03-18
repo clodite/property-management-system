@@ -1,4 +1,4 @@
-# property-management-system
+# Property Management System
 
 这是四个大学生的课设项目  
 把函数声明放在**function.h**文件里面喵  
