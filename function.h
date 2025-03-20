@@ -13,3 +13,19 @@ void menu_manager(char ID[30], char password[30], int type, char name[30], int a
 void menu_front(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 void menu_custom(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 
+// 客人
+
+// 取消自己的预约
+void cancel_my_booking (char ID[30]);
+// 查询自己预约信息
+void view_my_booking (char ID[30]);
+
+// 前台
+
+// 查询所有预约信息
+void view_all_bookings ();
+
+// 管理员
+
+// 统计预约信息
+void function_under_construction ();
