@@ -100,7 +100,7 @@ void print_too_many_attempts_ui() {
 
 // 登录功能
 void check_in() {
-    struct user* user_list = load_users("userdate");
+    struct user* user_list = load_users("userdate.txt");
     if (user_list == NULL) {
         return;
     }
