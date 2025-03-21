@@ -37,8 +37,8 @@ struct record
     char ID[30];            // id
     int room;               // 房间号
     int booking_time;       // 预约时间 按时间戳计算
-    int checking_in_time;   // 入住时间 按时间戳计算
-    int staying_time;       // 入住时长 在预约/办理入住时填写/修改
+    int checking_in_time;   // 入住时间 按时间戳计算，若未入住记-1（草案）
+    int staying_time;       // 入住时长 在预约/办理入住时填写/修改，若未入住记-1（草案）
     int checking_out_time;  // 退房时间 未退房记作-1
 };
 
