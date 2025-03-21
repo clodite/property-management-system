@@ -42,3 +42,11 @@ struct living
     int checking_out_time;  // 退房时间 未退房记作-1
 };
 
+struct strbook
+{
+    int time;       //  入住时间
+    int roomtype;   //  房间类型
+    int last;       //  居住多久
+    char id[30];    //  预约人id
+    struct strbook* next; //    无需多言
+};
