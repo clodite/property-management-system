@@ -48,6 +48,6 @@ struct strbook
     int roomtype;   //  房间类型
     int last;       //  居住多久
     char id[30];    //  预约人id
-    int status;     //  预约状态
+    int status;     //  预约状态（草案0/-1）
     struct strbook* next; //    无需多言
 };
