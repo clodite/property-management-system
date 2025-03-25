@@ -14,11 +14,12 @@ void menu_front(char ID[30], char password[30], int type, char name[30], int age
 void menu_custom(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 
 // C
-void cancel_my_booking(char myid[30]);     // 取消自己的预约
-void view_my_booking(char myid[30]);       // 查询自己预约信息
-void view_all_bookings();                  // 查询所有预约信息
-void function_under_construction();        // 统计预约信息
-struct strbook* load_strbook();            // 加载预约信息
+int cancel_my_booking(long long my_book_id);         // 取消自己的预约
+struct strbook* view_my_booking(char my_id[30]);     // 查询某人所有预约
+struct strbook* view_all_bookings();                 // 查询所有客人预约
+
+
+struct strbook* load_strbook();                      // 加载预约信息
 
 struct user* load_users(const char* users);  //将用户数据全部读取存入链表，返回首地址
 void write_users(const char* users, struct user* head); //将链表数据写入users文件中 
