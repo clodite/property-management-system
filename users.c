@@ -70,21 +70,9 @@ void freelist_user(struct user* head) //ÊÍ·ÅÁ´±íÄÚ´æ
 	}	
 }
 
-//int judge_by_ 
 
-void change_password(struct user* temp) //¸ø¿ÍÈËºÍÇ°Ì¨Ê¹ÓÃµÄ¸ü¸ÄÃÜÂëº¯Êı£¬Ö»ÄÜĞŞ¸Ä×Ô¼ºµÄÕË»§ 
+struct user* search_account(struct user* head, char ID[30]) //±éÀúÁ´±í²éÕÒID¶ÔÓ¦½á¹¹ÌåµÄº¯Êı£¬·µ»ØÕË»§½á¹¹ÌåµØÖ· 
 {
-	char password1[30];
-	printf("ÇëÊäÈëĞÂÃÜÂë\n");
-	scanf("%s", password1);
-	strcpy(temp->password, password1);
-}
-
-struct user* search_account(struct user* head) //±éÀúÁ´±í²éÕÒID¶ÔÓ¦½á¹¹ÌåµÄº¯Êı£¬·µ»ØÕË»§½á¹¹ÌåµØÖ· 
-{
-	char ID[30];
-	printf("ÇëÊäÈëID\n");
-	scanf("%s", ID);
 	struct user* temp = head;
 	int flag = 1;
 	while(strcmp(ID,temp->ID) != 0)
@@ -107,71 +95,43 @@ struct user* search_account(struct user* head) //±éÀúÁ´±í²éÕÒID¶ÔÓ¦½á¹¹ÌåµÄº¯Êı£
 	}
 }
 
-void super_change_password(struct user* head) //¸ø¹ÜÀíÔ±ÓÃµÄ¸ÄÃÜÂëº¯Êı£¬¿ÉÒÔÊäÈëÈÎÒâIDÒÔ¸ü¸ÄÆä¶ÔÓ¦µÄÃÜÂë 
+int change_password(struct user* head, char ID[30], char password[30]) //¸ø¿ÍÈËºÍÇ°Ì¨¸ÄÃÜÂëµÄº¯Êı 
 {
-    struct user* temp = search_account(head);
-	change_password(temp);
+    struct user* temp = search_account(head, ID);
+	char password1[30];
+	printf("ÇëÊäÈëĞÂÃÜÂë\n");
+	scanf("%s", password1);
+	strcpy(temp->password, password1);
+	return 0;	
 }
 
-void change_card(struct user* head) //¹ÜÀíÔ±ÓÃµÄ¸ü¸Ä¿Í»§µÈ¼¶µÄº¯Êı£¬ÊäÈëID¸ü¸Ä¶ÔÓ¦µÈ¼¶ 
+int super_change_password(struct user* head, char ID[30]) //¸ø¹ÜÀíÔ±ÓÃµÄ¸ÄÃÜÂëº¯Êı£¬¿ÉÒÔÊäÈëÈÎÒâIDÒÔ¸ü¸ÄÆä¶ÔÓ¦µÄÃÜÂë 
 {
-	struct user* temp = search_account(head);
+    struct user* temp = search_account(head, ID);
+	char password1[30];
+	scanf("%s", password1);
+	strcpy(temp->password, password1);
+	return 0;
+}
+
+int change_card(struct user* head, char ID[30]) //¹ÜÀíÔ±ÓÃĞŞ¸ÄµÈ¼¶ 
+{
+	struct user* temp = search_account(head, ID);
 	int t_card = 0;
 	printf("ÇëÊäÈëÏëÒªĞŞ¸ÄµÄµÈ¼¶\n");
 	scanf("%d", &t_card);
 	temp->card = t_card;
+	return 0;
+}
+
+int search_card(struct user* head, char ID[30], char password[30]) //²éÑ¯cardÖµ 
+{
+	struct user* temp = search_account(head, ID);
+	return temp->card; //ÕâÀïÍµÀÁÁËÊµ¼ÊÉÏ£¬¸ù±¾Ã»ÓĞĞ´ÅĞ¶ÏÃÜÂë£¬ÒòÎªÃ»±ØÒª 
 }
 
 
-void print_user(struct user* head) //¹ÜÀíÔ±Ê¹ÓÃµÄ²éÑ¯È«²¿ÓÃ»§ĞÅÏ¢ 
-{
-	struct user* temp = head;
-    while(temp!= NULL)
-    {
- 	   printf("%s %s %d %s %d %s %d\n", temp->ID, temp->password, temp->type, temp->name, temp->age, temp->call, temp->card);
-       temp = temp->next;
-	}  
-}
- 
-void register_user(struct user* head)  //×¢²áÏµÍ³ 
-{
-	struct user* temp = (struct user*)malloc(sizeof(struct user));
-	struct user* temp1 = head;
-	while(temp1->next != NULL)
-	{
-		temp1 = temp1->next;
-	}
-	temp1->next = temp;
-	temp->next = NULL;
-	int flag = 0;                //¼ÆÊıÒÔÅĞ¶ÏÊÇ·ñÍê³É×¢²á 
-	printf("ÇëÊäÈëÄúµÄID £¨²»³¬¹ı30Î»£©\n"); 
-	scanf("%s", temp->ID);
-	flag++;
-	printf("ÇëÊäÈëÄúµÄÃÜÂë\n");
-	scanf("%s", temp->password);
-	flag++;
-	printf("ÇëÊäÈëÄúµÄĞÕÃû ÄêÁä\n");
-	scanf("%s %d", temp->name, &temp->age); 
-	flag++;
-	printf("ÇëÊäÈëµç»°ºÅÂë\n");
-	scanf("%s", temp->call);
-	temp->type = 2;   
-	temp->card = 1;
-	if(flag == 3)
-	printf("×¢²á³É¹¦\n");
-}
 
-struct user* load_in(struct user* head) //ÔİÊ±Ã»É¶ÓÃ ²»¹ıµÇÂ¼¿ÉÄÜ»áÓÃµ½µÄÏÈËÑÑ°ÕË»§£¬È»ºóºË¶ÔÃÜÂëÕıÈ·²Å·µ»Ø¶ÔÓ¦ÕËºÅÖ¸ÕëµÄº¯Êı 
-{
-	struct user* temp = search_account(head);
-	char password1[30];
-	printf("ÇëÊäÈëÃÜÂë\n");
-	scanf("%s", password1);
-	if(strcmp(password1, temp->password) == 0) //ÃÜÂëÕıÈ·
-	   return temp;
-	else
-	{
-	  printf("error!\n");
-	  return NULL;
-    }
-}
+
+
+
