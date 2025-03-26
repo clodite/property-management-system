@@ -36,18 +36,18 @@ struct living
 {
     char ID[30];            // id
     int room;               // 房间号
-//  int booking_time;       //                                        // 预约时间 按时间戳计算
-    int checking_in_time;   // 入住时间 按时间戳计算                     //，若未入住记-1（草案）
-    int staying_time;       // 入住时长 在(预约/)办理入住时填写(/修改)     //，若未入住记-1（草案）
+    int checking_in_time;   // 入住时间 按时间戳计算
+    int staying_time;       // 入住时长 在办理入住时填写
     int checking_out_time;  // 退房时间 未退房记作-1
 };
 
 struct strbook
 {
+    long long book_id;
     int time;       //  入住时间
     int roomtype;   //  房间类型
     int last;       //  居住多久
     char id[30];    //  预约人id
-    int status;     //  预约状态（草案0/-1）
+    int status;     //  预约状态（草案0/1/2/未/已/取）
     struct strbook* next; //    无需多言
 };
