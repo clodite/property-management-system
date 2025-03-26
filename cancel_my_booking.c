@@ -1,6 +1,6 @@
-# include "header.h"
-# include "function.h"
-# include "struct.h"
+#include "header.h"
+#include "function.h"
+#include "struct.h"
 int cancel_my_booking(long long my_book_id)
 {
     FILE* book_record, *temp_file;
@@ -16,6 +16,7 @@ int cancel_my_booking(long long my_book_id)
     if (temp_file == NULL)
     {
         printf("无法创建临时文件。\n");
+        fclose(BOOK_FILE);
         return -1;
     }
 
@@ -32,6 +33,7 @@ int cancel_my_booking(long long my_book_id)
         if (sscanf(line, "%lld %d %d %d %s %d", &book_id, &time, &roomtype, &last, id, &status) != 6)
         {
             bug++; // 名字中含空格也会这样
+            // continue; //考虑要不要跳过这行数据
         }
 
         if (book_id == my_book_id)
