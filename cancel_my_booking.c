@@ -5,7 +5,7 @@ int cancel_my_booking(long long my_book_id)
 {
     FILE* book_record, *temp_file;
 
-    book_record = fopen ("book.txt", "a");
+    book_record = fopen (BOOK_FILE, "a");
     if (book_record == NULL)
     {
         printf("预约记录读取失败。\n");
@@ -84,8 +84,8 @@ int cancel_my_booking(long long my_book_id)
 
     if (real_found)
     {
-        remove ("book.txt");
-        rename ("canceling_temp.txt", "book.txt");
+        remove (BOOK_FILE);
+        rename ("canceling_temp.txt", BOOK_FILE);
         printf("取消该预约完成！\n");
         return 0;
     }

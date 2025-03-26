@@ -4,3 +4,5 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h> // timestamp transform
+
+#define BOOK_FILE "booklist.txt"

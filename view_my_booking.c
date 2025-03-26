@@ -1,10 +1,13 @@
 # include "header.h"
 # include "function.h"
 # include "struct.h"
-void view_my_booking (char myid[30])
+
+struct strbook* view_my_booking(char my_id[30])
 {
-    while(load->next != NULL)
+    FILE* book_record;
+    book_record = fopen(BOOK_FILE, "r");
+    if (book_record == NULL)
     {
-        if(strbook->id == myid)
+        printf("读取预约文件失败。\n");
     }
 }
