@@ -2,18 +2,23 @@
 #include "function.h"
 #include "struct.h"
 
+// 查询所有预约
 
-struct strbook* view_all_bookings() // 查询所有预约
+struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
 {
 
 }
 
-// count_all_bookings() // 统计所有预约
+// 统计所有预约
+
+// count_all_bookings()
 {
 
 }
 
-// sort_all_bookings() // 排序所有预约
+// 排序所有预约
+
+// sort_all_bookings(int order)
 {
 
 }
