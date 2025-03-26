@@ -10,4 +10,5 @@ struct strbook* view_my_booking(char my_id[30])
     {
         printf("读取预约文件失败。\n");
     }
+
 }
