@@ -43,10 +43,11 @@ struct living
 
 struct strbook
 {
+    long long book_id;
     int time;       //  入住时间
     int roomtype;   //  房间类型
     int last;       //  居住多久
     char id[30];    //  预约人id
-    int status;     //  预约状态（草案0/-1）
+    int status;     //  预约状态（草案0/1/2/未/已/取）
     struct strbook* next; //    无需多言
 };
