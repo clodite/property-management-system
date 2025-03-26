@@ -16,10 +16,9 @@ void menu_custom(char ID[30], char password[30], int type, char name[30], int ag
 // C
 int cancel_my_booking(long long my_book_id);         // 取消自己的预约
 struct strbook* view_my_booking(char my_id[30]);     // 查询某人所有预约
-struct strbook* view_all_bookings();                 // 查询所有客人预约
-
-
-struct strbook* load_strbook();                      // 加载预约信息
+struct strbook* view_all_bookings();                 // 查询所有预约
+// count_all_bookings(); // 统计所有预约
+// sort_all_bookings(); // 排序所有预约
 
 struct user* load_users(const char* users);  //将用户数据全部读取存入链表，返回首地址
 void write_users(const char* users, struct user* head); //将链表数据写入users文件中 
