@@ -71,8 +71,7 @@ void roombookcheck(int* rooms, int type,int sum)
 }
 void roomlivecheck(int* rooms, int type, int sum)
 {
-    for (int i = 0;i < 20000;i++)
-        rooms[i] = sum;
+
     struct live_record* livenow = load_lives("liveinlist.txt");
     while (1)
     {
@@ -311,6 +310,8 @@ void custom_book(char *userid)
         int roomremain[20000] = { sum };
         int check = 1;
         roombookcheck(roomremain, typein, sum);
+        roomlivecheck(roomremain, typein, sum);
+
         for (int i = timein_stamp;i < timein_stamp + lasttime;i++)
         {
             if (roomremain[i] == 0)
@@ -351,6 +352,8 @@ void custom_book(char *userid)
         int roomremain[20000] = { sum };
         int check = 1;
         roombookcheck(roomremain, typein,sum);
+        roomlivecheck(roomremain, typein, sum);
+
         for (int i = timein_stamp;i < timein_stamp + lasttime * 24 - 1;i++)
         {
             if (roomremain[i] == 0)
@@ -424,7 +427,7 @@ restart:
     printf("[2]正常房\n");
     int livetype = 0;
     scanf("%d", &livetype);
-    if (livetype == 1)
+    if (livetype == 2)
     {
         int lasttime = 0;
         printf("请输入居住天数\n");
@@ -451,13 +454,377 @@ restart:
             return 0;
         }
     }
-    else if (livetype == 2)
+    else if (livetype == 1)
     {
-        ;
+        if (timein.hour < 6 && timein.hour > 18)
+        {
+            printf("当前时间无法入住钟点房！");
+            goto end;
+        }
+        int lasttime = 0;
+    faq:
+        printf("请输入入住时间\n");
+        scanf("%d", &lasttime);
+        if (lasttime < 1 && lasttime > 4 )
+        {
+            printf("时长不符合约定，请重新输入！");
+            goto faq;
+        }
+        int sum = findroomcount(needtype);
+        timein_stamp = time_to_timestamp(timein);
+        int roomremain[20000] = { sum };
+        int check = 1;
+        roombookcheck(roomremain, needtype, sum);
+        roomlivecheck(roomremain, needtype, sum);
+
+        for (int i = timein_stamp;i < timein_stamp + lasttime;i++)
+        {
+            if (roomremain[i] == 0)
+            {
+                check = 0;
+                printf("您选择的时间段已无空房。");
+                break;
+            }
+        }
+        if (check)
+        {
+            service_find(userid, needtype, timein_stamp, lasttime);
+            end:
+            return 0;
+        }
+
+
     }
     else
     {
         printf("选择错误！请输入正确数字");
         goto restart;
+    }
+}
+struct live_record* live_p_leave()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->leave_time < livenow->next->leave_time)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+
+struct live_record* live_p_time()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->time_live < livenow->next->time_live)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+struct live_record* live_p_id()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->ID < livenow->next->ID)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+struct live_record* live_p_room()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->room < livenow->next->room)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+struct live_record* live_p_type()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->type < livenow->next->type)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+struct live_record* live_p_live()
+{
+    struct live_record* livenow = load_lives("liveinlist.txt");
+    struct live_record* head = livenow;
+    int size = 1;
+    while (head->next != NULL)
+    {
+        size++;
+        head = head->next;
+    }
+    head = livenow;
+    for (int i = 0;i < size - 1;i++)
+    {
+        livenow = head;
+        for (int j = 0;j < size - 1 - i;j++)
+        {
+            if (livenow->time_live < livenow->next->time_live)
+            {
+                char tmpc[30];
+                strcpy(tmpc, livenow->ID);
+                strcpy(livenow->ID, livenow->next->ID);
+                strcpy(livenow->next->ID, tmpc);
+                int tmpi = livenow->room;
+                livenow->room = livenow->next->room;
+                livenow->next->room = tmpi;
+                tmpi = livenow->type;
+                livenow->type = livenow->next->type;
+                livenow->next->type = tmpi;
+                tmpi = livenow->time_live;
+                livenow->time_live = livenow->next->time_live;
+                livenow->next->time_live = tmpi;
+                tmpi = livenow->leave_time;
+                livenow->leave_time = livenow->next->leave_time;
+                livenow->next->leave_time = tmpi;
+                tmpi = livenow->arrive_time;
+                livenow->arrive_time = livenow->next->arrive_time;
+                livenow->next->arrive_time = tmpi;
+            }
+            if (livenow->next != NULL)
+                livenow = livenow->next;
+        }
+    }
+    return head;
+}
+void livedatecheck()
+{
+    printf("请选择入住信息的排序方式！\n");
+    printf("[1]按时间顺序排序\n");
+    printf("[2]按用户id排序\n");
+    printf("[3]按房间号排序\n");
+    printf("[4]按入住时长排序\n");
+    printf("[5]按是否退房排序\n");
+    printf("[6]按房间类型排序\n");
+
+    int need;
+    struct live_record* head = NULL;
+    scanf("%d", &need);
+    switch (need)
+    {
+        case 1:
+            head = live_p_time();
+            break;
+        case 2:
+            head = live_p_id();
+            break;
+        case 3:
+            head = live_p_room();
+            break;
+        case 4:
+            head = live_p_live();
+            break;
+        case 5:
+            head = live_p_leave();
+            break;
+        case 6:
+            head = live_p_type();
+            break;
+        default:
+            printf("error!\n");
+            break;
+    }
+    liveprint(head);
+}
+void liveprint(struct live_record *head)
+{
+    while (1)
+    {
+        struct time thetime = timestamp_to_time(head->arrive_time);
+        printf("身份证号：%-030s  房间号：%d  房间类型：%d  入住时间：%-04d年%-02d月%-02d日%-02d时 入住时长：%-02d  ", head->ID, head->room, head->type, thetime.year, thetime.month, thetime.day, thetime.hour, head->time_live);
+        if (head->leave_time == -1)
+        {
+            printf("退房时间：未退房\n");
+
+        }
+        else
+        {
+            thetime = timestamp_to_time(head->leave_time);
+            printf("退房时间：%4d年%2d月%2d日%2d时\n", thetime.year, thetime.month, thetime.day, thetime.hour);
+
+        }
+        if (head->next == NULL)
+            break;
+        else
+            head = head->next;
     }
 }

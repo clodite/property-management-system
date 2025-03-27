@@ -7,7 +7,7 @@
 //这里放三种账号登录后给出的操作界面
 void menu_manager(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card)
 {
-	;
+	livedatecheck();
 }
 void menu_front(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card)
 {

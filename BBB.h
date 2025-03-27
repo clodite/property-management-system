@@ -11,6 +11,10 @@ void roombookcheck(int* rooms, int type, int sum);//rooms数组减去已预约的
 void service_find(char* userid, int type, int liveintime, int livefortime);
 struct live_record* load_lives(const char* roomdate);
 void give_room();//前台给房间
+void livedatecheck();//管理员查看入住信息
+void liveprint(struct live_record *head);
+struct live_record* live_p_time();
+
 
 
 
