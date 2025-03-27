@@ -2,6 +2,7 @@
 #include "function.h"
 #include "struct.h"
 
+// 统计预约
 int count_all_bookings()
 {
 
