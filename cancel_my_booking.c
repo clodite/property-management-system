@@ -34,7 +34,7 @@ int cancel_my_booking(long long my_book_id)
         if (sscanf(line, "%lld %d %d %d %s %d", &book_id, &time, &roomtype, &last, id, &status) != 6)
         {
             bug++; // 名字中含空格也会这样
-            // continue; //考虑要不要跳过这行数据
+            continue;
         }
 
         if (book_id == my_book_id)
