@@ -68,16 +68,9 @@ struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int
     return head;
 }
 
-// 统计所有预约
+// 排序所有预约：-1/0/1 倒序/不排序/正序
 
-// count_all_bookings()
-{
-
-}
-
-// 排序所有预约
-
-// sort_all_bookings(int order)
+// sort_all_bookings(int book_id_order, int time_order, int roomtype_order, int last_order, int id_order, int status_order)
 {
 
 }
