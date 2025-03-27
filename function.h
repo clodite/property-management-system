@@ -18,14 +18,9 @@ struct strbook* view_bookings(long long book_id, int time, int roomtype, int las
 struct strbook* sort_bookings(int type_x, int order_x, int type_y, int order_y); // 按条件排序预约：一二排序条件；增/减/不排序/1/-1/0
 int count_bookings(); // 统计预约（功能建设中）
 
-struct user* load_users(const char* users);  //将用户数据全部读取存入链表，返回首地址
-void write_users(const char* users, struct user* head); //将链表数据写入users文件中 
-void freelist_user(struct user* head);     //释放用户信息这个链表的内存 
-void change_password(struct user* temp);   //给客人和前台使用的更改密码函数，只能修改自己的账户，需要提前知道账户的地址 
-struct user* search_account(struct user* head);    //遍历链表查找ID对应结构体的函数，返回账户结构体地址 
-void super_change_password(struct user* head);     //给管理员用的改密码函数，可以输入任意ID以更改其对应的密码
-void change_card(struct user* head);               //管理员用的更改客户等级的函数，输入ID更改对应等级
-void print_user(struct user* head);                //管理员使用的查询全部用户信息,只是输出可能还得考虑前端
-void register_user(struct user* head);             //注册系统,因为还没考虑前端所以只是个可以跑的丐版
-struct user* load_in(struct user* head);    //暂时没啥用 不过登录可能会用到的先搜寻账户，然后核对密码正确才返回对应账号指针的函数 
+void write_room(const char* room, struct room* head); //将链表数据写入users文件中
+void freelist_room(struct room* head); //释放房间信息链表内存
+int change_room(struct room* head); //改变房间数据
+struct room* search_room(struct room* head, int num); //遍历链表查找ID对应结构体的函数，返回账户结构体地址
+void init_rooms(const char* roomdate); //初始化房间
 
