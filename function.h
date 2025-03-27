@@ -18,7 +18,7 @@ int cancel_my_booking(long long my_book_id);         // 取消自己的预约
 struct strbook* view_my_bookings(char my_id[30]);    // 查询某人所有预约（疑似与下面重复，且功能不全，建议采用下面方案）
 struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status);   // 查询所有预约（-1不指定）
 // sort_all_bookings(int book_id_order, int time_order, int roomtype_order, int last_order, int id_order, int status_order); // 排序所有预约：-1/0/1 倒序/不排序/正序（草案）
-// count_all_bookings(); // 统计所有预约（功能建设中）
+int count_all_bookings(); // 统计所有预约（功能建设中）
 
 struct user* load_users(const char* users);  //将用户数据全部读取存入链表，返回首地址
 void write_users(const char* users, struct user* head); //将链表数据写入users文件中 
