@@ -3,7 +3,7 @@
 #include "struct.h"
 
 // 统计预约
-int count_all_bookings()
+int count_bookings()
 {
 
 }

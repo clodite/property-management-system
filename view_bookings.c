@@ -4,7 +4,7 @@
 
 // 按条件查询预约
 
-struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
+struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
 {
     FILE* book_record;
     book_record = fopen(BOOK_FILE, "r");
