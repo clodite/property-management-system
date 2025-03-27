@@ -68,4 +68,14 @@ struct strbook* view_bookings(long long book_id, int time, int roomtype, int las
     return head;
 }
 
-
+// 释放内存
+void free_bookings(struct strbook* head)
+{
+    struct strbook* current = head;
+    while (current != NULL)
+    {
+        struct strbook* temp = current;
+        current = current->next;
+        free(temp);
+    }
+}
