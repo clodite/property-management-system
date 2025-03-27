@@ -26,7 +26,7 @@ struct strbook* view_my_bookings(char my_id[30])
         if (sscanf(line, "%lld %d %d %d %c %d", &book_id, &time, &roomtype, &last, id, &status) != 6)
         {
             bug++;
-            // continue; //考虑要不要跳过这行数据
+            continue;
         }
 
         if (strcmp(id, my_id) == 0)
