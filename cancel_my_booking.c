@@ -22,8 +22,9 @@ int cancel_my_booking(long long my_book_id)
 
     char line[256];
     int found = 0;      // 预约记录条数
-    int real_found = 0; // `- 未入住（0）条数
+    int real_found = 0; // `- 未入住（1）条数
     int bug = 0;        // 找到的bug数量，暂时没啥用
+
     while (fgets(line, sizeof(line), book_record))
     {
         long long book_id;
@@ -40,19 +41,19 @@ int cancel_my_booking(long long my_book_id)
         {
             found ++;
 
-            if (status == 0)
+            if (status == 1)
             {
                 real_found++;
                 fprintf(temp_file, "%lld %d %d %d %s %d\n", book_id, time, roomtype, last, id, 2);
             }
 
-            if (status == 1)
+            if (status == 2)
             {
                 printf("该预约已结单，无法操作。\n");
                 fputs(line, temp_file);
             }
 
-            if (status == 2)
+            if (status == 3)
             {
                 printf("该预约已经取消过啦。\n");
                 fputs(line, temp_file);
