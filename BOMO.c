@@ -124,8 +124,8 @@ struct strbook* load_books(const char* bookdate)
         }
 
 
-        int result = fscanf(file, "%d %d %d %s", &load_room->time, &load_room->roomtype, &load_room->last,&load_room->id);
-        if (result != 4)
+        int result = fscanf(file, "%lld %d %d %d %s %d", &load_room->book_id,&load_room->time, &load_room->roomtype, &load_room->last,&load_room->id,&load_room->status);
+        if (result != 6)
         {
             free(load_room);
             break;
@@ -332,7 +332,7 @@ void custom_book(char *userid)
             {
                 printf("预约成功！\n");
             }
-            fprintf(file, "%d %d %d %s\n", timein_stamp, typein, lasttime, userid);
+            fprintf(file, "%lld %d %d %d %s %d\n",1111111111, timein_stamp, typein, lasttime, userid,2);
             fclose(file);
 
             return 0;
@@ -374,7 +374,7 @@ void custom_book(char *userid)
             {
                 printf("预约成功！\n");
             }
-            fprintf(file, "%d %d %d %s\n", timein_stamp, typein, lasttime * 24 - 1,userid);
+            fprintf(file, "%lld %d %d %d %s %d\n", 1111111111, timein_stamp, typein, lasttime, userid, 2);
             fclose(file);
 
             return 0;
