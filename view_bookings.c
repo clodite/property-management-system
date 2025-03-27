@@ -2,9 +2,9 @@
 #include "function.h"
 #include "struct.h"
 
-// 查询所有预约
+// 按条件查询预约
 
-struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
+struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
 {
     FILE* book_record;
     book_record = fopen(BOOK_FILE, "r");
@@ -68,12 +68,4 @@ struct strbook* view_all_bookings(long long book_id, int time, int roomtype, int
     return head;
 }
 
-// 排序所有预约：
 
-// 增/减/不排序/1/-1/0
-// 排序元素：1.book_id 2.入住时间 3.居住多久 4.预约人id 5.预约状态
-
-// sort_all_bookings(int type_x, int order_x, int type_y, int order_y)
-{
-
-}
