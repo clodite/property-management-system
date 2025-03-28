@@ -4,7 +4,7 @@
 
 // [预约] 查询：-1不指定
 
-struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
+struct strbook* bookings_view(long long book_id, int time, int roomtype, int last, char id[30], int status)
 {
     FILE* book_record;
     book_record = fopen(BOOK_FILE, "r");
@@ -68,7 +68,7 @@ struct strbook* view_bookings(long long book_id, int time, int roomtype, int las
     return head;
 }
 
-void free_bookings(struct strbook* head) // [预约] 释放内存
+void bookings_free(struct strbook* head) // [预约] 释放内存
 {
     struct strbook* current = head;
     while (current != NULL)

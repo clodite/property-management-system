@@ -4,12 +4,12 @@
 
 // [预约] 统计：-1不指定
 
-int count_bookings_times(long long book_id, int time, int roomtype, int last, char id[30], int status) // [预约] 次数统计：-1不指定
+int bookings_count_times(long long book_id, int time, int roomtype, int last, char id[30], int status) // [预约] 次数统计：-1不指定
 {
-    return count_bookings_times_range(book_id, book_id, time, time, roomtype, roomtype, lsat, last, id[30], id[30], status);
+    return bookings_count_times_range(book_id, book_id, time, time, roomtype, roomtype, last, last, id[30], id[30], status);
 }
 
-int count_bookings_times_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, char m_id[30], char M_id[30], int status) // [预约] 范围次数统计：-1不指定
+int bookings_count_times_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, char m_id[30], char M_id[30], int status) // [预约] 范围次数统计：-1不指定
 {
     FILE* book_record;
     book_record = fopen(BOOK_FILE, "r");
@@ -47,12 +47,12 @@ int count_bookings_times_range(long long m_book_id, long long M_book_id, int m_t
     return times;
 }
 
-int count_bookings_guestnum(long long book_id, int time, int roomtype, int last, int status) // [预约] 人数统计：-1不指定
+int bookings_count_guest(long long book_id, int time, int roomtype, int last, int status) // [预约] 人数统计：-1不指定
 {
-    return count_bookings_guestnum_range(book_id, book_id, time, time, roomtype, roomtype, lsat, last, status);
+    return bookings_count_guestnum_range(book_id, book_id, time, time, roomtype, roomtype, lsat, last, status);
 }
 
-int count_bookings_guestnum_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, int status) // [预约] 范围人数统计：-1不指定
+int bookings_count_guest_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, int status) // [预约] 范围人数统计：-1不指定
 {
 
 }

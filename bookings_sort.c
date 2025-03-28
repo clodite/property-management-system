@@ -14,10 +14,10 @@ struct strbook* sort_bookings(int type, int order)
     }
 
     struct strbook* raw_bookings = view_bookings(-1, -1, -1, -1, "-1", -1);
-    return bookings_merge_sort(raw_bookings, type, order);
+    return bookings_sort_merge_sort(raw_bookings, type, order);
 }
 
-struct strbook* bookings_merge_sort(struct strbook* head, int type, int order) // [预约] 归并排序
+struct strbook* bookings_sort_merge_sort(struct strbook* head, int type, int order) // [预约] 归并排序
 {
     if (head == NULL || head->next == NULL)
     {
@@ -25,15 +25,15 @@ struct strbook* bookings_merge_sort(struct strbook* head, int type, int order) /
     }
 
     struct strbook *left, *right;
-    bookings_split(head, &left, &right);
+    bookings_sort_split(head, &left, &right);
 
-    left = bookings_merge_sort(left, type, order);
-    right = bookings_merge_sort(right, type, order);
+    left = bookings_sort_merge_sort(left, type, order);
+    right = bookings_sort_merge_sort(right, type, order);
 
-    return bookings_merge(left, right, type, order);
+    return bookings_sort_merge(left, right, type, order);
 }
 
-void bookings_split(struct strbook* head, struct strbook** left, struct strbook** right) // [预约] 归并排序之一
+void bookings_sort_split(struct strbook* head, struct strbook** left, struct strbook** right) // [预约] 归并排序之一
 {
     struct strbook* fast = head->next;
     struct strbook* slow = head;
@@ -49,14 +49,14 @@ void bookings_split(struct strbook* head, struct strbook** left, struct strbook*
     slow->next = NULL;
 }
 
-struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int type, int order) // [预约] 归并排序之二
+struct strbook* bookings_sort_merge(struct strbook* left, struct strbook* right, int type, int order) // [预约] 归并排序之二
 {
     struct strbook dummy;
     struct strbook* tail = &dummy;
 
     while (left && right)
     {
-        int cmp_nodes = book_compare_nodes(left, right, type, order);
+        int cmp_nodes = bookings_sort_cmp_nodes(left, right, type, order);
         if (cmp_nodes == 1)
         {
             tail->next = left;
@@ -73,7 +73,7 @@ struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int 
     return dummy.next;
 }
 
-int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order) // [预约] 节点比较
+int bookings_sort_cmp_nodes(struct strbook* a, struct strbook* b, int type, int order) // [预约] 节点比较
 {
     int result = 0;
     switch (type)
@@ -98,7 +98,7 @@ int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order
             else result = 0;
             break;
         case 5:
-            result = book_compare_nodes_str(a->id, b->id);
+            result = bookings_sort_cmp_nodes_str(a->id, b->id);
             break;
         case 6:
             if (a->status < b->status) result = 1;
@@ -111,7 +111,7 @@ int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order
     return (order == 1) ? result : -result;
 }
 
-int book_compare_nodes_str(const char* a, const char* b) // [预约] 字符串节点比较
+int bookings_sort_cmp_nodes_str(const char* a, const char* b) // [预约] 字符串节点比较
 {
     while (*a == '0') a++;
     while (*b == '0') b++;

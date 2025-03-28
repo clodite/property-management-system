@@ -4,7 +4,7 @@
 
 // [预约] 取消
 
-int cancel_bookings(long long my_book_id)
+int bookings_cancel(long long my_book_id)
 {
     FILE* book_record, *temp_file;
 
