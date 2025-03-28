@@ -2,10 +2,10 @@
 #include "function.h"
 #include "struct.h"
 
-// 按条件排序预约：
+// [预约] 排序：
 
 // 增/减/1/-1，整个函数都是这个逻辑。
-// 排序条件：1.book_id 2.入住时间 3.房间类型 4.居住多久 5.预约人id 6.预约状态
+// 排序条件：1.预约唯一id 2.入住时间 3.房间类型 4.居住多久 5.预约人id 6.预约状态
 
 struct strbook* sort_bookings(int type, int order)
 {
@@ -19,7 +19,7 @@ struct strbook* sort_bookings(int type, int order)
     return bookings_merge_sort(raw_bookings, type, order);
 }
 
-struct strbook* bookings_merge_sort(struct strbook* head, int type, int order)
+struct strbook* bookings_merge_sort(struct strbook* head, int type, int order) // [预约] 归并排序主函数
 {
     if (head == NULL || head->next == NULL)
     {
@@ -35,7 +35,7 @@ struct strbook* bookings_merge_sort(struct strbook* head, int type, int order)
     return bookings_merge(left, right, type, order);
 }
 
-void bookings_split(struct strbook* head, struct strbook** left, struct strbook** right)
+void bookings_split(struct strbook* head, struct strbook** left, struct strbook** right) // [预约] 归并排序之一
 {
     struct strbook* fast = head->next;
     struct strbook* slow = head;
@@ -51,7 +51,7 @@ void bookings_split(struct strbook* head, struct strbook** left, struct strbook*
     slow->next = NULL;
 }
 
-struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int type, int order)
+struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int type, int order) // [预约] 归并排序之二
 {
     struct strbook dummy;
     struct strbook* tail = &dummy;
@@ -75,28 +75,37 @@ struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int 
     return dummy.next;
 }
 
-int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order)
+int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order) // [预约] 节点比较
 {
     int result = 0;
     switch (type)
     {
         case 1:
-            result = (a->book_id < b->book_id) ? 1 : -1;
+            if (a->book_id < b->book_id) result = 1;
+            else if (a->book_id > b->book_id) result = -1;
+            else result = 0;
             break;
         case 2:
-            result = (a->time < b->time) ? 1 : -1;
+            if (a->time < b->time) result = 1;
+            else if (a->time > b->time) result = -1;
+            else result = 0;
             break;
         case 3:
-            result = (a->roomtype < b->roomtype) ? 1 : -1;
-            break;
+            if (a->roomtype < b->roomtype) result = 1;
+            else if (a->roomtype > b->roomtype) result = -1;
+            else result = 0;
         case 4:
-            result = (a->last < b->last) ? 1 : -1;
+            if (a->last < b->last) result = 1;
+            else if (a->last > b->last) result = -1;
+            else result = 0;
             break;
         case 5:
             result = book_compare_nodes_str(a->id, b->id);
             break;
         case 6:
-            result = (a->status < b->status) ? 1 : -1;
+            if (a->status < b->status) result = 1;
+            else if (a->status > b->status) result = -1;
+            else result = 0;
             break;
         default:
             result = 0;
@@ -104,7 +113,7 @@ int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order
     return (order == 1) ? result : -result;
 }
 
-int book_compare_nodes_str(const char* a, const char* b)
+int book_compare_nodes_str(const char* a, const char* b) // [预约] 字符串节点比较
 {
     while (*a == '0') a++;
     while (*b == '0') b++;
