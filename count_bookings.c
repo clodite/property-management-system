@@ -4,7 +4,7 @@
 
 // [预约] 统计：-1不指定
 
-int count_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
+int count_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status) // [预约] 点统计：-1不指定
 {
     FILE* book_record;
     book_record = fopen(BOOK_FILE, "r");
@@ -42,3 +42,7 @@ int count_bookings(long long book_id, int time, int roomtype, int last, char id[
     return times;
 }
 
+int count_bookings_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, char m_id[30], char M_id[30], int included_status) // [预约] 范围统计：-1不指定
+{
+
+}

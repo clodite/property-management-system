@@ -22,7 +22,8 @@ void bookings_split(struct strbook* head, struct strbook** left, struct strbook*
 struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int type, int order); // [预约] 归并排序之二
 int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order); // [预约] 节点比较
 int book_compare_nodes_str(const char* a, const char* b); // [预约] 字符串节点比较
-int count_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status); // [预约] 统计：-1不指定
+int count_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status); // [预约] 点统计：-1不指定
+int count_bookings_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, char m_id[30], char M_id[30], int included_status) // [预约] 范围统计：-1不指定
 
 void write_room(const char* room, struct room* head); //将链表数据写入users文件中
 void freelist_room(struct room* head); //释放房间信息链表内存
