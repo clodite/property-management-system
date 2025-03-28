@@ -16,7 +16,12 @@ void menu_custom(char ID[30], char password[30], int type, char name[30], int ag
 int cancel_my_booking(long long my_book_id); // 取消自己的预约
 void free_bookings(struct strbook* head); // 释放内存
 struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status);   // 按条件查询预约（-1不指定）
-struct strbook* sort_bookings(int type_x, int order_x, int type_y, int order_y); // 按条件排序预约：一二排序条件；增/减/不排序/1/-1/0
+struct strbook* sort_bookings(int type, int order); // 排序预约：增/减/1/-1
+struct strbook* bookings_merge_sort(struct strbook* head, int type, int order); // [预约] 归并排序主函数
+void bookings_split(struct strbook* head, struct strbook** left, struct strbook** right); // [预约] 归并排序之一
+struct strbook* bookings_merge(struct strbook* left, struct strbook* right, int type, int order); // [预约] 归并排序之二
+int book_compare_nodes(struct strbook* a, struct strbook* b, int type, int order); // [预约] 节点比较
+int book_compare_nodes_str(const char* a, const char* b); // [预约] 字符串节点比较
 int count_bookings(); // 统计预约（功能建设中）
 
 void write_room(const char* room, struct room* head); //将链表数据写入users文件中
@@ -28,7 +33,7 @@ struct user* load_users(const char* users);  //将用户数据全部读取存入
 void write_users(const char* users, struct user* head); //将链表数据写入users文件中
 void freelist_user(struct user* head); //释放链表内存
 struct user* search_account(struct user* head, char ID[30]); //遍历链表查找ID对应结构体的函数，返回账户结构体地址 
-int change_password(struct user* head, char ID[30], char password[30]) //给客人和前台改密码的函数
+int change_password(struct user* head, char ID[30], char password[30]); //给客人和前台改密码的函数
 int search_card(struct user* head, char ID[30], char password[30]); //查询card值
 int change_card(struct user* head, char ID[30]); //管理员用修改等级
 int super_change_password(struct user* head, char ID[30]); //给管理员用的改密码函数，可以输入任意ID以更改其对应的密码 
