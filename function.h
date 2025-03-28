@@ -14,6 +14,7 @@ void menu_front(char ID[30], char password[30], int type, char name[30], int age
 void menu_custom(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 
 int cancel_my_booking(long long my_book_id); // 取消自己的预约
+void free_bookings(struct strbook* head); // 释放内存
 struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status);   // 按条件查询预约（-1不指定）
 struct strbook* sort_bookings(int type_x, int order_x, int type_y, int order_y); // 按条件排序预约：一二排序条件；增/减/不排序/1/-1/0
 int count_bookings(); // 统计预约（功能建设中）
