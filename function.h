@@ -13,6 +13,8 @@ void menu_manager(char ID[30], char password[30], int type, char name[30], int a
 void menu_front(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 void menu_custom(char ID[30], char password[30], int type, char name[30], int age, char call[20], int card);
 
+int id_strcmp(const char* a, const char* b); // [ID] 字符串比较：小->大：1；大->小：-1；相等：0
+
 int bookings_cancel(long long my_book_id); // [预约] 取消
 void bookings_free(struct strbook* head); // [预约] 释放内存
 struct strbook* bookings_view(long long book_id, int time, int roomtype, int last, char id[30], int status);   // [预约] 查询：-1不指定
@@ -21,7 +23,6 @@ struct strbook* bookings_sort_merge_sort(struct strbook* head, int type, int ord
 void bookings_sort_split(struct strbook* head, struct strbook** left, struct strbook** right); // [预约] 归并排序之一
 struct strbook* bookings_sort_merge(struct strbook* left, struct strbook* right, int type, int order); // [预约] 归并排序之二
 int bookings_sort_cmp_nodes(struct strbook* a, struct strbook* b, int type, int order); // [预约] 节点比较
-int bookings_sort_cmp_nodes_str(const char* a, const char* b); // [预约] 字符串节点比较
 int bookings_count_times(long long book_id, int time, int roomtype, int last, char id[30], int status); // [预约] 次数统计：-1不指定
 int bookings_count_times_range(long long m_book_id, long long M_book_id, int m_time, int M_time, int m_roomtype, int M_roomtype, int m_last, int M_last, char m_id[30], char M_id[30], int status); // [预约] 范围次数统计：-1不指定
 int bookings_count_guest(long long book_id, int time, int roomtype, int last, int status); // [预约] 人数统计：-1不指定

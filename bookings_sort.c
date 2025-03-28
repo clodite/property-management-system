@@ -98,7 +98,7 @@ int bookings_sort_cmp_nodes(struct strbook* a, struct strbook* b, int type, int 
             else result = 0;
             break;
         case 5:
-            result = bookings_sort_cmp_nodes_str(a->id, b->id);
+            result = id_strcmp(a->id, b->id);
             break;
         case 6:
             if (a->status < b->status) result = 1;
@@ -111,22 +111,3 @@ int bookings_sort_cmp_nodes(struct strbook* a, struct strbook* b, int type, int 
     return (order == 1) ? result : -result;
 }
 
-int bookings_sort_cmp_nodes_str(const char* a, const char* b) // [预约] 字符串节点比较
-{
-    while (*a == '0') a++;
-    while (*b == '0') b++;
-
-    int len_a = strlen(a);
-    int len_b = strlen(b);
-
-    if (len_a < len_b) return 1;
-    if (len_a > len_b) return -1;
-
-    while (*a && *b) {
-        if (*a < *b) return 1;
-        if (*a > *b) return -1;
-        a++;
-        b++;
-    }
-    return 0;
-}
