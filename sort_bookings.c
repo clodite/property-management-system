@@ -2,10 +2,8 @@
 #include "function.h"
 #include "struct.h"
 
-// [预约] 排序：
-
-// 增/减/1/-1，整个函数都是这个逻辑。
-// 排序条件：1.预约唯一id 2.入住时间 3.房间类型 4.居住多久 5.预约人id 6.预约状态
+// [预约] 排序
+// [type]: 1.预约唯一id 2.入住时间 3.房间类型 4.居住多久 5.预约人id 6.预约状态 [order]: 增/减/1/-1
 
 struct strbook* sort_bookings(int type, int order)
 {
@@ -19,7 +17,7 @@ struct strbook* sort_bookings(int type, int order)
     return bookings_merge_sort(raw_bookings, type, order);
 }
 
-struct strbook* bookings_merge_sort(struct strbook* head, int type, int order) // [预约] 归并排序主函数
+struct strbook* bookings_merge_sort(struct strbook* head, int type, int order) // [预约] 归并排序
 {
     if (head == NULL || head->next == NULL)
     {

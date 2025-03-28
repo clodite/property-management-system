@@ -1,7 +1,10 @@
 #include "header.h"
 #include "function.h"
 #include "struct.h"
-int cancel_my_booking(long long my_book_id)
+
+// [预约] 取消
+
+int cancel_booking(long long my_book_id)
 {
     FILE* book_record, *temp_file;
 

@@ -2,7 +2,7 @@
 #include "function.h"
 #include "struct.h"
 
-// 按条件查询预约
+// [预约] 查询：-1不指定
 
 struct strbook* view_bookings(long long book_id, int time, int roomtype, int last, char id[30], int status)
 {
@@ -68,8 +68,7 @@ struct strbook* view_bookings(long long book_id, int time, int roomtype, int las
     return head;
 }
 
-// 释放内存
-void free_bookings(struct strbook* head)
+void free_bookings(struct strbook* head) // [预约] 释放内存
 {
     struct strbook* current = head;
     while (current != NULL)
