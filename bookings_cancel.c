@@ -19,7 +19,7 @@ int bookings_cancel(long long my_book_id)
     if (temp_file == NULL)
     {
         printf("无法创建临时文件。\n");
-        fclose(BOOK_FILE);
+        fclose(book_record);
         return -1;
     }
 
@@ -96,4 +96,5 @@ int bookings_cancel(long long my_book_id)
         return 0;
     }
 
+    return -1;
 }

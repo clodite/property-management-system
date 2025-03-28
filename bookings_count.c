@@ -43,7 +43,7 @@ int bookings_count_times_range(long long m_book_id, long long M_book_id, int m_t
         times++;
     }
 
-    fclose(BOOK_FILE);
+    fclose(book_record);
     return times;
 }
 

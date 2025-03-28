@@ -40,7 +40,7 @@ struct strbook* bookings_view(long long book_id, int time, int roomtype, int las
         if (new_node == NULL)\
         {
             printf("分配内存失败。\n");
-            fclose(BOOK_FILE);
+            fclose(book_record);
             return head;
         }
 
@@ -64,7 +64,7 @@ struct strbook* bookings_view(long long book_id, int time, int roomtype, int las
         }
     }
 
-    fclose(BOOK_FILE);
+    fclose(book_record);
     return head;
 }
 
