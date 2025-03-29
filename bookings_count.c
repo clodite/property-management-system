@@ -67,9 +67,19 @@ int bookings_count_guest_range(long long m_book_id, long long M_book_id, int m_t
         return -1;
     }
 
-    int times = 0;
+    int num = 0;
     char line[256];
     int bug = 0; // 没用
+
+    struct guest_times
+    {
+        char id[30];
+        int times; // 暂作冗余功能
+        struct guest_times *next;
+    };
+
+    struct guest_times* head = NULL;
+    struct guest_times* tail = NULL;
 
     while (fgets(line, sizeof(line), book_record))
     {
@@ -85,11 +95,55 @@ int bookings_count_guest_range(long long m_book_id, long long M_book_id, int m_t
 
         if (((current_book_id >= m_book_id && current_book_id <= M_book_id && m_book_id != -1 && M_book_id != -1) || (current_book_id >= m_book_id && m_book_id != -1 && M_book_id == -1) || (current_book_id <= M_book_id || M_book_id != -1 && m_book_id == -1) || (m_book_id == -1 && M_book_id == -1)) && ((current_time >= m_time && current_time <= M_time && m_time != -1 && M_time != -1) || (current_time >= m_time && m_time != -1 && M_time == -1) || (current_time <= M_time || M_time != -1 && m_time == -1) || (m_time == -1 && M_time == -1)) && ((current_roomtype >= m_roomtype && current_roomtype <= M_roomtype && m_roomtype != -1 && M_roomtype != -1) || (current_roomtype >= m_roomtype && m_roomtype != -1 && M_roomtype == -1) || (current_roomtype <= M_roomtype || M_roomtype != -1 && m_roomtype == -1) || (m_roomtype == -1 && M_roomtype == -1)) && ((current_last >= m_last && current_last <= M_last && m_last != -1 && M_last != -1) || (current_last >= m_last && m_last != -1 && M_last == -1) || (current_last <= M_last || M_last != -1 && m_last == -1) || (m_last == -1 && M_last == -1)) && (current_status == status || status == -1))
         {
-            times++;
+            struct guest_times* nodes = head;
+            while(nodes != NULL && id_strcmp(nodes->id, current_id) != 0)
+            {
+                nodes = nodes->next;
+            }
+
+            if(id_strcmp(nodes->id, current_id) == 0)
+            {
+                nodes->times++;
+            }
+
+            else if(nodes == NULL)
+            {
+                struct guest_times* new_node = (struct guest_times*)malloc(sizeof(struct guest_times));
+                if (new_node == NULL)
+                {
+                    printf("分配内存失败。\n");
+                    fclose(book_record);
+                    return -1;
+                }
+                strcpy(new_node->id, current_id);
+                new_node->times = 1;
+
+                if (head == NULL)
+                {
+                    head = new_node;
+                    tail = new_node;
+                }
+                else
+                {
+                    tail->next = new_node;
+                    tail = new_node;
+                }
+
+                num++;
+            }
         }
     }
 
     fclose(book_record);
-    return times;
+    struct guest_times* current = head;
+    while (current != NULL)
+    {
+        struct guest_times* temp = current;
+        current = current->next;
+        free(temp);
+    }
+
+    return num;
 }
+
 

@@ -37,7 +37,7 @@ struct strbook* bookings_view(long long book_id, int time, int roomtype, int las
         }
 
         struct strbook* new_node = (struct strbook*)malloc(sizeof(struct strbook));
-        if (new_node == NULL)\
+        if (new_node == NULL)
         {
             printf("分配内存失败。\n");
             fclose(book_record);
