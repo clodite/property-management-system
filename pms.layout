@@ -1,0 +1,190 @@
+[
+    {
+        "caretX": 2,
+        "caretY": 99,
+        "filename": "D:/桌面/xxm/projects/pms/bookings_cancel.c",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 918
+    },
+    {
+        "caretX": 38,
+        "caretY": 36,
+        "filename": "D:/桌面/xxm/projects/pms/function.h",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 5,
+        "top": 192
+    },
+    {
+        "caretX": 19,
+        "caretY": 6,
+        "filename": "D:/桌面/xxm/projects/pms/header.h",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 28,
+        "caretY": 13,
+        "filename": "D:/桌面/xxm/projects/pms/timestamp_to_time.c",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 26,
+        "caretY": 776,
+        "filename": "D:/桌面/xxm/projects/pms/administrator.cpp",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 0,
+        "top": 3408
+    },
+    {
+        "caretX": 23,
+        "caretY": 9,
+        "filename": "D:/桌面/xxm/projects/pms/bookings_view.c",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 16,
+        "caretY": 1,
+        "filename": "D:/桌面/xxm/projects/pms/room.txt",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 42,
+        "caretY": 8,
+        "filename": "D:/桌面/xxm/projects/pms/BBB.h",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 15,
+        "caretY": 491,
+        "filename": "D:/桌面/xxm/projects/pms/custom.cpp",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 2,
+        "top": 3792
+    },
+    {
+        "caretX": 15,
+        "caretY": 123,
+        "filename": "D:/桌面/xxm/projects/pms/front_tai.cpp",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 1,
+        "top": 1696
+    },
+    {
+        "caretX": 3,
+        "caretY": 87,
+        "filename": "D:/桌面/xxm/projects/pms/room.c",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 510
+    },
+    {
+        "caretX": 4,
+        "caretY": 48,
+        "filename": "D:/桌面/xxm/projects/pms/time_to_timestamp.c",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 1,
+        "caretY": 4,
+        "filename": "D:/桌面/xxm/projects/pms/liveinlist.txt",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 17,
+        "caretY": 20,
+        "filename": "D:/桌面/xxm/projects/pms/register.cpp",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 6,
+        "top": 0
+    },
+    {
+        "caretX": 19,
+        "caretY": 285,
+        "filename": "D:/桌面/xxm/projects/pms/BOMO.c",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 4,
+        "top": 5600
+    },
+    {
+        "caretX": 1,
+        "caretY": 60,
+        "filename": "D:/桌面/xxm/projects/pms/struct.h",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 3,
+        "top": 336
+    },
+    {
+        "caretX": 4,
+        "caretY": 21,
+        "filename": "D:/桌面/xxm/projects/pms/login.cpp",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 23,
+        "caretY": 16,
+        "filename": "D:/桌面/xxm/projects/pms/booklist.txt",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    },
+    {
+        "caretX": 8,
+        "caretY": 234,
+        "filename": "D:/桌面/xxm/projects/pms/main.cpp",
+        "focused": true,
+        "isOpen": true,
+        "left": 0,
+        "order": 7,
+        "top": 3552
+    },
+    {
+        "caretX": 2,
+        "caretY": 11,
+        "filename": "D:/桌面/xxm/projects/pms/user.txt",
+        "focused": false,
+        "isOpen": false,
+        "left": 0,
+        "top": 0
+    }
+]

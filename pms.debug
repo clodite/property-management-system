@@ -1,0 +1,135 @@
+{
+    "breakpoints": [
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "custom.cpp",
+            "line": 916,
+            "timestamp": "1744187697752"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 332,
+            "timestamp": "1744200843492"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 123,
+            "timestamp": "1744201806776"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 258,
+            "timestamp": "1744201827076"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 211,
+            "timestamp": "1744277559849"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 420,
+            "timestamp": "1744277581262"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 314,
+            "timestamp": "1744277878705"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 10,
+            "timestamp": "1744280157928"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "BOMO.c",
+            "line": 31,
+            "timestamp": "1744280164319"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "front_tai.cpp",
+            "line": 37,
+            "timestamp": "1744283752762"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "administrator.cpp",
+            "line": 662,
+            "timestamp": "1744285427853"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "function.h",
+            "line": 27,
+            "timestamp": "1744285939512"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "function.h",
+            "line": 28,
+            "timestamp": "1744285939849"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "function.h",
+            "line": 29,
+            "timestamp": "1744285940229"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "function.h",
+            "line": 30,
+            "timestamp": "1744285940639"
+        },
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "function.h",
+            "line": 22,
+            "timestamp": "1744286069125"
+        }
+    ],
+    "timestamp": "1744353936042",
+    "watchvars": [
+    ]
+}

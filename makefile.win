@@ -1,0 +1,70 @@
+# Project: pms
+# Makefile created by Red Panda C++ 3.2.2958
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = "-s" "-mwindows" "-lgraphics" "-luuid" "-lmsimg32" "-lgdi32" "-limm32" "-lole32" "-loleaut32" "-lwinmm" "-lgdiplus" "-static"
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-O2" "-pipe"
+CFLAGS   = $(INCS) "-O2" "-pipe"
+WINDRESFLAGS = 
+RES      = pms_private.res
+OBJ      = bookings_cancel.o timestamp_to_time.o administrator.o bookings_view.o custom.o front_tai.o room.o time_to_timestamp.o register.o BOMO.o login.o main.o $(RES)
+BIN      = pms.exe
+LINKOBJ  = "bookings_cancel.o" "timestamp_to_time.o" "administrator.o" "bookings_view.o" "custom.o" "front_tai.o" "room.o" "time_to_timestamp.o" "register.o" "BOMO.o" "login.o" "main.o" "pms_private.res"
+CLEANOBJ = "bookings_cancel.o" "timestamp_to_time.o" "administrator.o" "bookings_view.o" "custom.o" "front_tai.o" "room.o" "time_to_timestamp.o" "register.o" "BOMO.o" "login.o" "main.o" "pms_private.res" "pms.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+pms.exe: $(OBJ)
+
+	$(CXX) $(LINKOBJ) -o "pms.exe" $(LIBS)
+
+bookings_cancel.o: bookings_cancel.c function.h header.h struct.h
+	$(CC) -c "bookings_cancel.c" -o "bookings_cancel.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+timestamp_to_time.o: timestamp_to_time.c function.h header.h struct.h
+	$(CC) -c "timestamp_to_time.c" -o "timestamp_to_time.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+administrator.o: administrator.cpp function.h header.h struct.h
+	$(CXX) -c "administrator.cpp" -o "administrator.o" $(CXXFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+bookings_view.o: bookings_view.c function.h header.h struct.h
+	$(CC) -c "bookings_view.c" -o "bookings_view.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+custom.o: custom.cpp function.h header.h struct.h
+	$(CXX) -c "custom.cpp" -o "custom.o" $(CXXFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+front_tai.o: front_tai.cpp function.h header.h struct.h
+	$(CXX) -c "front_tai.cpp" -o "front_tai.o" $(CXXFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+room.o: room.c function.h header.h struct.h
+	$(CC) -c "room.c" -o "room.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+time_to_timestamp.o: time_to_timestamp.c function.h header.h struct.h
+	$(CC) -c "time_to_timestamp.c" -o "time_to_timestamp.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+register.o: register.cpp
+	$(CXX) -c "register.cpp" -o "register.o" $(CXXFLAGS) 
+
+BOMO.o: BOMO.c function.h header.h BBB.h struct.h
+	$(CC) -c "BOMO.c" -o "BOMO.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+login.o: login.cpp
+	$(CXX) -c "login.cpp" -o "login.o" $(CXXFLAGS) 
+
+main.o: main.cpp function.h header.h struct.h
+	$(CXX) -c "main.cpp" -o "main.o" $(CXXFLAGS)  -finput-charset=UTF-8 -fexec-charset=gbk
+
+pms_private.res: pms_private.rc 
+	$(WINDRES) -i "pms_private.rc" --input-format=rc -o "pms_private.res" -O coff $(WINDRESFLAGS) 
+
